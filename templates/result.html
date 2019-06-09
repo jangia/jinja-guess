@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Guess the secret number results page
+{% endblock title %}
+
+{% block content %}
+    <h2>And your result is:</h2>
+    <p>{{ message }}</p>
+
+    <p><a href="/">Guess again</a></p>
+{% endblock content %}
