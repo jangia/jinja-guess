@@ -58,7 +58,6 @@ def result():
     elif guess < user.secret_number:
         message = "I am sorry but your guess is wrong. Try something higher"
 
-
     return render_template("result.html", message=message)
 
 if __name__ == '__main__':

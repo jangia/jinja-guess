@@ -1,7 +1,7 @@
 import os
 from sqla_wrapper import SQLAlchemy
 
-db = SQLAlchemy(os.getenv("DATABASE_URL", "sqlite:///localhost.sqlite"))
+db = SQLAlchemy(os.getenv("DATABASE_URL", "sqlite:///localhost.sqlite?check_same_thread=false"))
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
