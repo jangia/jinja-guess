@@ -5,18 +5,43 @@
 {% endblock title %}
 
 {% block content %}
-    <h2>Play the guessing game below</h2>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <h2>Play the game below</h2>
+        </div>
+    </div>
+
     {% if user and user.secret_number %}
         <form method="post" action="/result">
-            <input type="number" name="guess" placeholder="What's your guess">
-            <button type="submit" class="btn btn-outline-primary">Guess away</button>
+            <div class="form-group">
+                <label for="userGuess">Guess</label>
+                <input type="number" name="guess" class="form-control" id="userGuess" aria-describedby="guessHint" placeholder="What's your guess">
+                <small id="guessHint" class="form-text text-muted">
+                    *Hint: the number is somewhere between 0 and 31!
+                </small>
+            </div>
+            <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Guess away</button>
         </form>
     {% else %}
         <form method="post" action="/login">
-            <input type="text" name="user" placeholder="Enter your name">
-            <input type="email" name="email" placeholder="Enter your email">
-            <button type="submit" class="btn btn-outline-primary">Login</button>
+                <div class="form-group">
+                    <label for="userName">Username</label>
+                    <input type="text" name="user" class="form-control" id="userName" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Email</label>
+                    <input type="email" name="email" class="form-control" id="userEmail" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="userPassword">Password</label>
+                    <input type="password" name="password" class="form-control" id="userPassword" aria-describedby="passHelp" placeholder="Enter your password">
+                    <small id="passHelp" class="form-text text-muted">
+                        Your password must be 8-20 characters long, contain letters and numbers.
+                    </small>
+                </div>
+            <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Login</button>
         </form>
-
+</div>
    {% endif %}
 {% endblock content %}

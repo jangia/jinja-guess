@@ -20,16 +20,20 @@ def index():
 def login():
     name = request.form.get("user")
     email = request.form.get("email")
+    password = request.form.get("password")
 
     secret_number = random.randint(1, 30)
 
     user = db.query(User).filter_by(email=email).first()
 
     if not user:
-        user = User(name=name, email=email, secret_number=secret_number)
+        user = User(name=name, email=email, secret_number=secret_number, password=password)
 
         db.add(user)
         db.commit()
+
+    if password != user.password:
+        return "WRONG PASSWORD! Go back and try again"
 
     response = make_response(redirect(url_for("index")))
     response.set_cookie("email", email)
